@@ -9,7 +9,7 @@ public class AnimeRepository {
     private final List<Anime> animeList;
 
     public AnimeRepository() {
-        animeList = new ArrayList<Anime>();
+        animeList = new ArrayList<>();
     }
 
     public void save(Anime anime) {
@@ -18,6 +18,10 @@ public class AnimeRepository {
 
     public List<Anime> findAll() {
         return new ArrayList<>(animeList);
+    }
+
+    public void delete(String id) {
+        animeList.remove(findById(id));
     }
 
     public Anime findById(String id) {

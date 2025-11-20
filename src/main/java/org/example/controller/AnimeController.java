@@ -23,22 +23,46 @@ public class AnimeController {
             String name = scanner.nextLine();
 
             try {
-                switch (name) {
-                    case "change":
-                        System.out.println("What Anime do you want to change?: ");
-                        String newName = scanner.nextLine();
-                        if (newName.isEmpty()) {
+                if (name.equalsIgnoreCase("exit")) break;
+                if (name.equalsIgnoreCase("list")) {
+                    animeView.showAnimeList(animeService.getAnime());
+                } else {
+                    if (animeService.findAnime(name) != null) {
+                        System.out.println("This anime already exists! (change/delete/exit)");
+                        switch (scanner.nextLine()) {
+                            case "exit":
+                                break;
+                            case "delete":
+                                animeService.deleteAnime(name);
+                                break;
+                            case "change":
+                                System.out.println("What exactly do you want to change? (title/genre/year/status): )");
+                                switch (scanner.nextLine()) {
+                                    case "title":
+                                        System.out.println("Enter New Anime Title: ");
+                                        String nt = scanner.nextLine();
+                                        animeService.findAnime(name).setTitle(nt);
+                                        break;
+                                    case "genre":
+                                        System.out.println("Enter New Anime Genre: ");
+                                        String ng = scanner.nextLine();
+                                        animeService.findAnime(name).setGenre(ng);
+                                        break;
+                                    case "year":
+                                        System.out.println("Enter New Anime Year: ");
+                                        int ny = scanner.nextInt();
+                                        animeService.findAnime(name).setYear(ny);
+                                        break;
+                                    case "status":
+                                        animeService.findAnime(name).setDone();
+                                        System.out.println("Status changed!");
+                                        break;
+                                }
                         }
-                        animeService.findAnime(newName).setDone();
-                        System.out.println(newName + " has been changed!");
-                        break;
-                    case "list":
-                        animeView.showAnimeList(animeService.getAnime());
-                        break;
-                    default:
+                    } else {
                         animeService.addAnime(name);
                         System.out.println("Anime added: " + name);
-                        break;
+                    }
                 }
             } catch (Exception e) {
                 animeView.showMessage(e.getMessage());

@@ -23,4 +23,8 @@ public class AnimeService {
     public Anime findAnime(String animeName) {
         return animeRepository.findById(animeName);
     }
+
+    public void deleteAnime(String animeName) {
+        animeRepository.delete(animeName);
+    }
 }
