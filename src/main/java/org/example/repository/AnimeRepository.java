@@ -16,20 +16,22 @@ public class AnimeRepository {
         animeList.add(anime);
     }
 
+    public void delete(Anime anime) {
+        animeList.remove(anime);
+    }
+
     public List<Anime> findAll() {
         return new ArrayList<>(animeList);
     }
 
-    public void delete(String id) {
-        animeList.remove(findById(id));
-    }
-
-    public Anime findById(String id) {
-        for (Anime anime : animeList) {
-            if (anime.getTitle().equals(id)) {
-                return anime;
+    public Anime find(Anime anime) {
+        Anime n = null;
+        for (Anime a : animeList) {
+            if (a.getTitle().equals(anime.getTitle())) {
+                n = a;
+                break;
             }
         }
-        return null;
+        return n;
     }
 }

@@ -22,4 +22,28 @@ public class AnimeView {
             }
         }
     }
+
+    public void showSentence() {
+        System.out.print("Enter anime name: ");
+    }
+
+    public void showMenu(String s) {
+        System.out.print("Anime \"" + s + "\" already exists! You can change it's conditions! \n(title/genre/year/status/delete): ");
+    }
+
+    public void showPattern(String s) {
+        System.out.print("Enter New Anime " + s + ": ");
+    }
+
+    public void showChange(String s) {
+        System.out.println(s + " changed!");
+    }
+
+    public void showAdd(String s) {
+        System.out.println("Anime added: " + s);
+    }
+
+    public void showDelete(String s) {
+        System.out.println(s + " was deleted T_T");
+    }
 }

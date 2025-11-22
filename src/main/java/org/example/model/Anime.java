@@ -13,23 +13,27 @@ public class Anime {
         this.year = 0;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.title = name;
     }
+
     public String getTitle() {
         return title;
     }
+
     public void setDone() {
         this.done = true;
     }
+
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
     public void setYear(int year) {
         this.year = year;
     }
 
     public String toString() {
-        return (this.title + " " + (done ? "[✓]" : "[ ]") + " " + genre + " " + (year!=0 ? year : ""));
+        return (this.title + " " + (done ? "[✓]" : "[ ]") + " " + genre + " " + (year != 0 ? year : ""));
     }
 }

@@ -16,15 +16,24 @@ public class AnimeService {
         return animeRepository.findAll();
     }
 
-    public void addAnime(String animeName) {
-        animeRepository.save(new Anime(animeName));
+    public void addAnime(Anime anime) {
+        animeRepository.save(anime);
     }
 
-    public Anime findAnime(String animeName) {
-        return animeRepository.findById(animeName);
+    public Anime findByName(String animeName) {
+        return animeRepository.find(new Anime(animeName));
     }
 
-    public void deleteAnime(String animeName) {
-        animeRepository.delete(animeName);
+    public void deleteAnime(Anime anime) {
+        animeRepository.delete(anime);
+    }
+
+    public void updateAnime(String s, Anime anime, String feature) {
+        switch (s) {
+            case "title" -> anime.setName(feature);
+            case "genre" -> anime.setGenre(feature);
+            case "year" -> anime.setYear(Integer.parseInt(feature));
+            case "status" -> anime.setDone();
+        }
     }
 }
