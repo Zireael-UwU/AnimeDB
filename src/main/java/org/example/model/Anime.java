@@ -1,11 +1,13 @@
 package org.example.model;
 
+// Слой-Модель (структура данных, POJO)
 public class Anime {
     private String title;
     private boolean done;
     private String genre;
     private int year;
 
+    // Конструктор, обязательное поле - название
     public Anime(String title) {
         this.title = title;
         this.done = false;
@@ -13,8 +15,8 @@ public class Anime {
         this.year = 0;
     }
 
-    public void setName(String name) {
-        this.title = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getTitle() {
@@ -33,6 +35,7 @@ public class Anime {
         this.year = year;
     }
 
+    // Переопределение toString для корректного вывода
     public String toString() {
         return (this.title + " " + (done ? "[✓]" : "[ ]") + " " + genre + " " + (year != 0 ? year : ""));
     }

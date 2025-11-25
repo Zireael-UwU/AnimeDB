@@ -5,9 +5,12 @@ import org.example.repository.AnimeRepository;
 
 import java.util.List;
 
+// Слой-Сервис (бизнес логика, операции пока без валидации)
 public class AnimeService {
+    // Локальная переменная репозитория
     private final AnimeRepository animeRepository;
 
+    // Контроллер с dependency injection
     public AnimeService(AnimeRepository animeRepository) {
         this.animeRepository = animeRepository;
     }
@@ -20,20 +23,27 @@ public class AnimeService {
         animeRepository.save(anime);
     }
 
-    public Anime findByName(String animeName) {
-        return animeRepository.find(new Anime(animeName));
+    public Anime findByName(String title) {
+        return animeRepository.findByTitle(title);
     }
 
-    public void deleteAnime(Anime anime) {
-        animeRepository.delete(anime);
+    public void deleteAnime(String title) {
+        animeRepository.deleteByTitle(title);
     }
 
-    public void updateAnime(String s, Anime anime, String feature) {
-        switch (s) {
-            case "title" -> anime.setName(feature);
-            case "genre" -> anime.setGenre(feature);
-            case "year" -> anime.setYear(Integer.parseInt(feature));
-            case "status" -> anime.setDone();
-        }
+    public void updateTitle(String s, Anime anime) {
+        anime.setTitle(s);
+    }
+
+    public void updateGenre(String s, Anime anime) {
+        anime.setGenre(s);
+    }
+
+    public void updateYear(int i, Anime anime) {
+        anime.setYear(i);
+    }
+
+    public void updateStatus(Anime anime) {
+        anime.setDone();
     }
 }
