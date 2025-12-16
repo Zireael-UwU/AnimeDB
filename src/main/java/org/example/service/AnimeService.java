@@ -2,16 +2,17 @@ package org.example.service;
 
 import org.example.model.Anime;
 import org.example.repository.AnimeRepository;
+import org.example.repository.PostgresAnimeRepository;
 
 import java.util.List;
 
 // Слой-Сервис (бизнес логика, операции пока без валидации)
 public class AnimeService {
     // Локальная переменная репозитория
-    private final AnimeRepository animeRepository;
+    private final PostgresAnimeRepository animeRepository;
 
     // Контроллер с dependency injection
-    public AnimeService(AnimeRepository animeRepository) {
+    public AnimeService(PostgresAnimeRepository animeRepository) {
         this.animeRepository = animeRepository;
     }
 
@@ -33,17 +34,21 @@ public class AnimeService {
 
     public void updateTitle(String s, Anime anime) {
         anime.setTitle(s);
+        animeRepository.update(anime);
     }
 
     public void updateGenre(String s, Anime anime) {
         anime.setGenre(s);
+        animeRepository.update(anime);
     }
 
     public void updateYear(int i, Anime anime) {
         anime.setYear(i);
+        animeRepository.update(anime);
     }
 
     public void updateStatus(Anime anime) {
-        anime.setDone();
+        anime.setDone(!anime.getDone());
+        animeRepository.update(anime);
     }
 }
