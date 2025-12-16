@@ -1,7 +1,6 @@
 package org.example.service;
 
 import org.example.model.Anime;
-import org.example.repository.AnimeRepository;
 import org.example.repository.PostgresAnimeRepository;
 
 import java.util.List;

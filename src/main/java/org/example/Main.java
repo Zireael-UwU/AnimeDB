@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.controller.AnimeController;
-import org.example.repository.AnimeRepository;
 import org.example.repository.PostgresAnimeRepository;
 import org.example.service.AnimeService;
 import org.example.view.AnimeView;
