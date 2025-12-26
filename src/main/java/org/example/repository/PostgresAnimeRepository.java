@@ -53,13 +53,13 @@ public class PostgresAnimeRepository {
     }
 
     // Querying
-    public Anime findByTitle(String title) {
+    public Anime findById(Anime anime) {
         Anime a = null;
         String sql = "SELECT * FROM anime WHERE title = ?";
 
         try(Connection conn = PostgresConnection.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, title);
+            ps.setString(1, anime.getTitle());
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 a = new Anime();
@@ -76,12 +76,12 @@ public class PostgresAnimeRepository {
     }
 
     // Identifying
-    public void deleteByTitle(String title) {
-        String sql = "DELETE FROM anime WHERE title=?";
+    public void deleteById(Anime anime) {
+        String sql = "DELETE FROM anime WHERE id=?";
 
         try(Connection conn = PostgresConnection.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, title);
+            ps.setInt(1, anime.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

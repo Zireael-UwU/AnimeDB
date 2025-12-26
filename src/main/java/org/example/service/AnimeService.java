@@ -23,12 +23,12 @@ public class AnimeService {
         animeRepository.save(anime);
     }
 
-    public Anime findByName(String title) {
-        return animeRepository.findByTitle(title);
+    public Anime findAnime(Anime anime) {
+        return animeRepository.findById(anime);
     }
 
-    public void deleteAnime(String title) {
-        animeRepository.deleteByTitle(title);
+    public void deleteAnime(Anime anime) {
+        animeRepository.deleteById(anime);
     }
 
     public void updateTitle(String s, Anime anime) {

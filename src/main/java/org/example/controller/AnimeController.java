@@ -30,7 +30,7 @@ public class AnimeController {
                     animeView.showAnimeList(animeService.getAnime());
                 } else {
                     // Проверка по полученному названию, выбор соответствующего алгоритма сервиса
-                    Anime anime = animeService.findByName(animeName);
+                    Anime anime = animeService.findAnime(new Anime(animeName));
                     if (anime != null) {
                         String action = animeView.showMenu(animeName);
                         // Реализация меню выбора доступных действий для существующего объекта
@@ -60,7 +60,7 @@ public class AnimeController {
                             }
                             case "delete" -> {
                                 // Удаление объекта из памяти
-                                animeService.deleteAnime(animeName);
+                                animeService.deleteAnime(anime);
                                 animeView.showDelete(animeName);
                             }
                         }
